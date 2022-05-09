@@ -1,0 +1,7 @@
+--- #Only target yaml
+- hosts: newserver
+  user: ansible1
+  become: yes
+  connection: ssh  
+  gather_facts: yes
+  

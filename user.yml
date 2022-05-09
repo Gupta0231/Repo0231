@@ -1,0 +1,10 @@
+--- #My First Playbook
+- hosts: newserver
+  user: ansible1
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: user add
+      action: user name=munglee update_password=Anjali@0231 shell=/bin/bash state=present 
+

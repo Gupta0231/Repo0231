@@ -1,0 +1,15 @@
+--- # Installing via Variable
+- hosts: newserver
+  user: ansible1
+  become: yes
+  connection: ssh
+  vars:
+    pkgname: httpd
+
+  tasks:
+    - name: Installing tree
+      action: yum name='{{pkgname}}' state=installed
+
+  handlers:
+    - name: starting service
+      action: service name='{{pkgname}}' state=started

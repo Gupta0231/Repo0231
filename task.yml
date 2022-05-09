@@ -1,0 +1,10 @@
+--- #My First Playbook
+- hosts: newserver
+  user: ansible1
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: install httpd on linux
+      action: yum name=httpd state=removed
+    
