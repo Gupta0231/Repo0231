@@ -1,0 +1,17 @@
+--- #my new self-play
+- hosts: newserver
+  user: ansible1
+  become: yes
+  connection: ssh
+  tasks:
+    - name: installing httpd package
+      action: yum name=httpd state=installed
+      notify: restart HTTPD
+
+    - name: copy file
+      action: copy src=/home/ansible1/index.html dest=/var/www/html
+      
+  handlers:
+    - name: restart HTTPD
+      action: service name=httpd state=started
+
