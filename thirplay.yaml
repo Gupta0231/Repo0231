@@ -1,0 +1,21 @@
+---
+- name: adding user
+  hosts: myserver
+  tasks:
+    - name: adding group
+      group:
+        name: devops
+        state: present
+
+    - name: adding user ravish
+      user:
+        name: ravish
+        uid: 1100
+        password: "$6$nUPbclYQvsHL6NKQ$m4kgeO13dDrhPnKhEctUIB07K2zYeS7LQRG/Ylm9BQsQc1S1EsEQSpZHOz7UVbdc2rzwZgKRGzq.unnKG8EjK0"      
+        home: /home/project/ravish
+        move_home: yes
+        groups: devops
+        append: yes
+        shell: /bin/bash
+        state: present
+...
