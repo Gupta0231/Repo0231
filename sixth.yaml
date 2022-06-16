@@ -1,0 +1,15 @@
+---
+- name: installing package
+  hosts: myserver, localhost
+  tasks:
+    - name: installing git
+      apt:
+        name: git
+        state: present
+
+    - name: installing docker on ubuntu
+      apt:
+        name: docker.io
+        state: present
+
+...

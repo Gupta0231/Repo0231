@@ -1,0 +1,26 @@
+--- 
+- name: adding user and group
+  hosts: myserver
+  tasks:
+    - name: Adding user ravish
+      user:
+        name: kavi
+        uid: 1300
+        password: "Redhat@123"
+        home: /home/shared/kavi
+        move_home: yes
+        shell: /bin/bash
+        state: present
+
+    - name: creating Testing group
+      group:
+        name: Developer
+        state: present
+
+    - name: adding secondary group to raman
+      user:
+        name: kavi
+        groups: Developer
+        append: yes
+
+...

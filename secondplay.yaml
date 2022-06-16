@@ -1,0 +1,19 @@
+---
+- name: adding user
+  hosts: myserver
+  tasks:
+    - name: creating directory
+      file:
+        name: /home/project
+        state: directory
+
+    - name: adding user ravish
+      user:
+        name: ravish
+        uid: 1007
+        password: "$6$nUPbclYQvsHL6NKQ$m4kgeO13dDrhPnKhEctUIB07K2zYeS7LQRG/Ylm9BQsQc1S1EsEQSpZHOz7UVbdc2rzwZgKRGzq.unnKG8EjK0"
+        home: /home/project/ravish
+        shell: /bin/bash
+        state: absent
+
+...
