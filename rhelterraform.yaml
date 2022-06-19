@@ -1,0 +1,15 @@
+---
+- name: installing terraform on rhel
+  hosts: redhat
+  tasks:
+    - name: installing package
+      yum:
+        name: unzip
+        state: present
+
+    - name: installing redhat package
+      unarchive:
+        src: https://releases.hashicorp.com/terraform/1.2.3/terraform_1.2.3_linux_amd64.zip
+        dest: /usr/local/bin
+        remote_src: yes
+...

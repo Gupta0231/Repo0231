@@ -1,0 +1,27 @@
+--- 
+- name: terraform install
+  hosts: myserver[0]
+  tasks:
+    - name: add repo key
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+      
+
+    - name: adding repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+        state: present
+      
+
+    - name: updating ubuntu
+      apt:
+        name: "*"
+        state: latest
+
+    - name: installing terraform
+      apt:
+        name: terraform
+        update_cache: yes
+
+...

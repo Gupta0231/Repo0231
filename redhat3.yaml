@@ -1,0 +1,26 @@
+---
+- name: terraform install on redhat
+  hosts: myserver[1]
+  tasks:
+    - name: installing package
+      yum:
+        name: yum-utils
+        state: present
+
+    - name: adding repository of hashicorp
+      yum_repository:
+        name: hashicorp
+        description: repository for hashicorp
+        baseurl: "https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo"
+        enabled: yes
+        gpgcheck: "0"
+        state: present
+
+    - name: installing terraform
+      yum:
+        name: terraform
+        state: present
+        update_cache: yes
+...
+
+

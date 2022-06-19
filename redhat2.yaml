@@ -1,0 +1,27 @@
+---
+- name: terraform install through shell module
+  hosts: myserver[1]
+  tasks:
+    - name: package yum-utils
+      yum:
+        name: yum-utils
+        state: present
+
+    - name: adding repository
+      shell: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+      args:
+        creates: /etc/yum.repos/hashicorp.repo
+
+    - name: update packages
+      yum:
+        name: "*"
+        state: latest
+
+    - name: install terraform
+      yum:
+        name: terraform
+        state: present
+
+...
+
+

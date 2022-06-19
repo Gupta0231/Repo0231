@@ -1,0 +1,14 @@
+---
+- name:
+  hosts: redhat
+  tasks:
+    - name: installing packages
+      yum:
+        name: "{{item}}"
+        state: present
+      loop:
+        - git
+        - docker
+
+...
+
