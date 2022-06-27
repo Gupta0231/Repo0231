@@ -1,0 +1,35 @@
+---
+- name: "LvM partition"
+  hosts: redhat
+  tasks:
+    - name: Creating extend partition
+      parted:
+         device: /dev/xvdc
+         number: 2
+         part_type: extended
+         state: present
+         part_end: 1GiB
+
+    - name: Creating lvm partion
+      parted:
+        device: /dev/xvdc
+        number: 5
+        part_type: logical
+        flags: [ lvm ]
+        part_start: 0%
+        part_end: 530MB
+        state: present
+
+    - name: Create a filesystem
+      filesystem:
+        fstype: ext4
+        dev: /dev/xvdc5
+
+    - name: mount the lvm
+      mount:
+        path: /opt
+        src: /dev/xvdc5
+        fstype: ext4
+        state: present
+...   
+

@@ -1,0 +1,9 @@
+packages:
+    - httpd
+    - podman
+    - mariadb-server
+
+services:
+    - httpd
+    - podman
+    - mariadb

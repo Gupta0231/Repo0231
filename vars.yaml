@@ -1,0 +1,19 @@
+---
+- name: This is variable playbook
+  hosts: redhat
+  vars_files: /root/ansible/myvarfile
+  tasks:
+    - name: Installing packages
+      yum:
+        name: "{{item}}"
+        state: present
+      loop: "{{packages}}"
+
+    - name: Installing service
+      service:
+        name: "{{item}}"
+        state: restarted
+        enabled: true 
+      loop: "{{services}}"
+
+...

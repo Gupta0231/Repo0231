@@ -1,0 +1,11 @@
+---
+- name: partition
+  hosts: redhat
+  tasks:
+    - name: creating partition on rhel 
+      parted:
+        device: /dev/xvdc
+        number: 1
+        state: present
+        part_start: 1GiB
+...

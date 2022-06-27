@@ -1,0 +1,35 @@
+--- 
+- name: installing jenkins
+  hosts: redhat
+  tasks:
+    - name: installing jenkins on rhel
+      yum_repository:
+        name: jenkinsrhel
+        description: repojenkins
+        baseurl: https://pkg.jenkins.io/redhat-stable
+        gpgkey: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+        gpgcheck: yes
+        state: present
+
+    - name: yum update
+      yum:
+        name: "*"
+        state: latest
+    
+    - name: install java
+      yum:
+        name: java-11-openjdk
+        state: present
+
+    - name: install jenkins
+      yum:
+        name: jenkins
+        state: present
+
+    - name: jenkins service
+      service:
+        name: jenkins
+        state: started
+        enabled: yes
+...
+

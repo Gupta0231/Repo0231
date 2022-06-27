@@ -1,0 +1,9 @@
+---
+- name: copy file 
+  hosts: 172.31.35.249 
+  user: root
+  become: true
+  tasks: 
+     - name: Copy files between two hosts
+       command: rsync -zvh /root/combo.tar.gz root@172.31.37.227:/srv/
+...

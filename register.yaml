@@ -1,0 +1,12 @@
+---
+- name: register output
+  hosts: all
+  tasks:
+    - name: display output
+      command: "lsblk -f"
+      register: myoutput
+
+    - debug:
+        var: myoutput.stdout_lines
+
+...

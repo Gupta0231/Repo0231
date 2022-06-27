@@ -1,0 +1,34 @@
+---
+- name: installing kuber
+  hosts: redhat
+  tasks:
+    - name: install docker
+      yum:
+        name: docker
+        state: present
+
+    - name: installing kubernetes package
+      yum_repository:
+        name: kuber
+        description: KubeRepo
+        baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+        gpgcheck: yes
+        gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+        state: present
+
+    - name: update package
+      yum:
+        name: "*"
+        state: latest
+
+    - name: installing kuber package
+      yum:
+        name: kubelet
+        state: present
+        update_cache: yes
+
+    - name: installing kubeadm
+      yum:
+        name: kubeadm
+        state: present
+...

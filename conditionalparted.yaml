@@ -1,0 +1,14 @@
+---
+- name: Creating partition using condition
+  hosts: redhat
+  tasks:
+    - name: Display disk size availaiblity
+      parted:
+        device: /dev/xvdf
+        number: 1
+        unit: GB
+        state: present
+        part_start: 0%
+        part_end: 3GB
+      when: ansible_devices.xvdf.size|int <= 5000 and ansible_os_family == 'RedHat'
+

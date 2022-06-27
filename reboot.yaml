@@ -1,0 +1,12 @@
+---
+- name: rebooting system
+  hosts: all
+  tasks:
+    - name: rebooting only rhel
+      reboot:
+        reboot_timeout: 10
+        pre_reboot_delay: 5
+        post_reboot_delay: 9
+        test_command: whoami
+...
+

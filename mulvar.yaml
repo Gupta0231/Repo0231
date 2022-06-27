@@ -1,0 +1,23 @@
+all_username:
+  - rami
+  - kavi
+  - shashi
+  - tummy
+  - pavi
+
+all_uid:
+  - "3001"
+  - "3002"
+  - "3003"
+  - "3004"
+  - "3005"
+
+all_home:
+  - /opt/rami
+  - /opt/kavi
+  - /opt/shashi
+  - /opt/tummy
+  - /opt/pavi
+
+
+

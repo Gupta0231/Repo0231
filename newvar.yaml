@@ -1,0 +1,23 @@
+---
+- name: multiple tasks
+  hosts: redhat
+  vars_files: /root/ansible/mulvar.yaml
+  tasks:
+    - name: creating Prod group
+      group:
+        name: Production
+        state: present
+
+    - name: useradd
+      user:
+        name: "{{item.0}}"
+        uid: "{{item.1}}"
+        home: "{{item.2}}"
+        groups: Production
+        append: yes
+        state: present
+      loop: "{{ all_username|zip(all_uid,all_home,all_password)|list }}"
+
+...
+   
+

@@ -1,0 +1,10 @@
+---
+- name: User loop
+  hosts: localhost
+  tasks:
+    - name: adding user and its details
+      user:
+        name: mehta
+        password: $1$my_rh$eHSy0PwgXYpVq1uu/Irrl/
+        state: present
+...
