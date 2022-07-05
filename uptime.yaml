@@ -1,0 +1,20 @@
+---
+- name: uptime playbook
+  hosts: all
+  tasks:
+    - name: register uptime output
+      command: uptime
+      register: output
+
+    - debug:
+         var: output.stdout
+
+    - name: display cpu and lsblk
+      command: w
+      register: myoutput
+      
+
+    - debug:
+          var: myoutput.stdout 
+      when: ansible_uptime_seconds > 6000 
+

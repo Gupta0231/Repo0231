@@ -1,0 +1,13 @@
+---
+- name: stopping running instance
+  hosts: localhost
+  tasks:
+    - name: stop ec2-instance
+      ec2:
+        instance_ids: 
+          - i-0e0ef8b5f8536a2f3
+          - i-060132174b146c467
+        region: ap-south-1
+        state: absent
+
+...

@@ -1,0 +1,16 @@
+---
+- name: Line in line playbook
+  hosts: localhost
+  tasks:
+    - name: line in line on ubuntu
+      lineinfile:
+             path: /etc/hosts
+             insertafter: '^127.0.0.1'
+             line: 172.31.37.227 ubuntu
+
+    - name: line in file on Redhat
+      lineinfile:
+             path: /etc/hosts
+             insertafter: '^127.0.0.1'
+             line: 172.31.35.249 redhat
+...

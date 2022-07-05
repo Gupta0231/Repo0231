@@ -1,0 +1,11 @@
+---
+- name: stop rhel aws 
+  hosts: localhost
+  tasks:
+    - name: stop rhel aws
+      ec2:
+        instance_ids: i-0aad5a01f98e7e137
+        region: ap-south-1
+        state: stopped
+
+...

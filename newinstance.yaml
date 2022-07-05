@@ -1,0 +1,14 @@
+---
+- name: creating new instance from playbook
+  hosts: localhost
+  tasks: 
+    - name: creating new instance
+      ec2:
+        key_name: instance-key
+        instance_type: t2.micro
+        image: ami-05c8ca4485f8b138a
+        region: ap-south-1
+        group: group-sg
+        vpc_subnet_id: subnet-0322bc00e3b090f97
+        assign_public_ip: yes
+        count: 1

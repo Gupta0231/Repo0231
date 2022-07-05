@@ -1,0 +1,17 @@
+packages:
+  - samba
+  - samba-client
+  - samba-common
+  - firewalld
+
+smb_user:
+  - rohit
+  - sudhanshu
+
+services:
+  - smb
+
+clientpkg:
+  - cifs-utils
+  - samba-client
+  - samba-common

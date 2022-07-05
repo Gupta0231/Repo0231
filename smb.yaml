@@ -1,0 +1,74 @@
+---
+- name: installing samba server
+  hosts: localhost
+  vars_files:
+    - /root/ansible/samba/sambavars.yaml
+  tasks:
+    - name: installing packages
+      yum:
+        name: "{{item}}"
+        state: present
+      loop: "{{packages}}"
+
+    - name: create a directory
+      file:
+        path: /smbshared
+        state: directory
+        owner: root
+        group: root
+        mode: '777'
+
+    - name: create a user
+      user:
+        name: "{{item}}"
+        state: present
+      loop: "{{smb_user}}"
+
+    - name: Adding into samba user
+      command: echo -e "123\n123\n" | smbpasswd -a -s rohit
+
+    - name: adding into samba user
+      command: echo -ne "123\n1234\n" | smbpasswd -a -s sudhanshu
+
+    - name: adding content in samba config file
+      blockinfile:
+        path: /etc/samba/smb.conf
+        block: |
+          [tester]
+                comment = smb dir for testing team
+                path = /smbshared
+                hosts allow = 0.0.0.0/24
+                valid users = rohit, sudhanshu
+                write list = rohit
+
+    - name: service restart
+      service:
+        name: "{{item}}"
+        state: restarted
+      loop: "{{services}}"
+
+    - name: firewall 
+      command: "firewall-cmd --permanent --add-service=samba"
+
+    - name: firewall reload
+      command: "firewall-cmd --reload"
+
+
+- hosts: 172.31.35.249
+  vars_files:
+    - /root/ansible/samba/sambavars.yaml
+  tasks:
+    - name: installing packages
+      yum:
+        name: "{{item}}"
+        state: present
+      loop: "{{clientpkg}}"
+
+    - name: mounting nfs
+      command: " mount -o username:rohit //172.31.37.153/tester /srv "
+      register: myoutput 
+
+
+
+...
+

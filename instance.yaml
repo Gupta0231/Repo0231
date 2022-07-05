@@ -1,0 +1,21 @@
+---
+- name: installing aws
+  hosts: localhost
+  tasks:
+    - name: installing aws
+      ec2:
+        key_name: redhat
+        instance_type: t2.micro
+        image: ami-05c8ca4485f8b138a
+        state: running
+        region: ap-south-1
+        instance_ids: i-0aad5a01f98e7e137
+        assign_public_ip: yes
+      register: output
+
+    - debug:
+        var: output
+
+...
+
+

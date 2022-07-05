@@ -6,9 +6,9 @@
       parted:
         device: /dev/xvdf
         number: 1
-        unit: GB
         state: present
-        part_start: 0%
         part_end: 3GB
-      when: {% if ansible_devices.xvdf.size = 5Gib %}} True {% else %} False {% endif %}
+      when: ansible_devices.xvdf.size|int == "5.00GB" 
+
+
 
